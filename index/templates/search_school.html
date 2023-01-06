@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>高校查询</title>
+    <style>body{text-align:center};</style>
+</head>
+<body>
+<h1>高校查询</h1>
+<hr>
+<form method="get" action="">
+    <input type="text" name="key">
+    <input type="submit" value="搜索">
+</form>
+{% if obj %}
+<table cellspacing=10>
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>发布者</th>
+        <th align="left">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in obj %}
+    <tr>
+        <th>{{i.id}}</th>
+        <td>{{i.sender_id}}</td>
+        <td><a href="/box/content/{{i.id}}/" ><input type="button" value="详情"></a>
+            <a href="/{{i.sender_id}}/info" ><input type="button" value="查看发布者信息"></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<span style="color:grey">{{error}}</span><br>
+{% endif %}
+<a href="/" type="text">回到主页</a>
+</body>
+</html>

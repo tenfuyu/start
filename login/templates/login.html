@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style type="text/css">body{text-align:center}</style>
+</head>
+<body>
+<br>
+<h1>脱单盲盒</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {% for i in form %}
+    {{i.label}} : {{i}}<br>
+    {% endfor %}
+    <input type="submit" value="登录">
+    <a href="/register/" ><input type="button" value="注册"></a><br>
+    <a href="find/">忘记密码？</a><br>
+   <span style="color:red">{{error}}</span>
+</form>
+</body>
+</html>

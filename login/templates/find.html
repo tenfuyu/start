@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找回密码</title>
+    <style type="text/css">body{text-align:center}</style>
+</head>
+<body>
+<h1>找回密码</h1>
+<hr>
+{% if h == 0 %}
+<form method="post">
+    {% csrf_token %}
+    {{form.email.label}}:{{form.email}}<span style="color:red" >{{error}}</span><br>
+    <input type="submit" value="提交邮箱"><br>
+</form>
+{% endif %}
+{% if h == 1 %}
+<form method="post">
+    {% csrf_token %}
+    验证码：<input type="text" name="code"/><span style="color:red" >{{error2}}</span><br>
+    <input type="submit" value="确认"><br>
+</form>
+{% endif %}
+</body>
+</html>

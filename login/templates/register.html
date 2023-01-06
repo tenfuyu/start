@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style type="text/css">body{text-align:center}</style>
+</head>
+<body>
+<br>
+<h1>脱单盲盒</h1>
+<hr>
+<form method="post" action="">
+    {% csrf_token %}
+    {{form.fake_name.label}}:{{form.fake_name}}<br>
+    {{form.email.label}}:{{form.email}}<br>
+    {{form.password.label}}:{{form.password}}<br>
+    确认密码：<input type="password" name="password2"/><br>
+    <input type="submit" value="注册">
+</form>
+<span style="color:red" >{{error}}</span>
+</body>
+</html>

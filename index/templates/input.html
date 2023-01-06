@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建盲盒</title>
+    <style type="text/css">
+    body{text-align:center}
+    form{border: 2px dotted #AAAAAA;
+    padding: 1px 6px 1px 6px;
+    margin:0px;
+    font:14px Arial;}
+    </style>
+</head>
+<body>
+<h1>创建盲盒</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {% for i in form %}
+    {{i.label}} : {{i}}<span style="color:red">{{i.errors}}</span><br>
+    {% endfor %}
+    <input type="submit" value="创建">
+</form>
+<span style="color:red">{{error}}</span>
+</body>
+</html>

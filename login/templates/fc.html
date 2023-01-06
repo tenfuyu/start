@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏夹内容</title>
+    <style>body{text-align:center};
+    </style>
+</head>
+<body>
+<div class="title"><h1>收藏夹名称：{{ft.fold_name}}</h1></div>
+<span style="color：grey">创建人：{{ft.creator.fake_name}}</span><hr>
+<img src="/static/media/{{ft.img}}" width="200px" height="200px" />
+<table cellspacing=10>
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>发布者</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in fc %}
+    <tr>
+        <th>{{i.id}}</th>
+        <td>{{i.sender_id}}</td>
+        <td><a href="/box/content/{{i.id}}/" ><input type="button" value="详情"></a>
+            <a href="/{{i.sender_id}}/info" ><input type="button" value="查看发布者信息"></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

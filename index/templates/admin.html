@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盲盒列表</title>
+    <style type="text/css">
+        body{text-align:center}
+    </style>
+    <style type="text/css">
+    .top{
+    height:auto;
+    width:100%;
+    margin-left:0;
+    background:rgb(130, 130, 130);
+    position: fixed;
+    top: 0;
+    margin-bottom: 5px;
+}
+.top ul{
+    width: auto;
+    list-style-type: none;
+    white-space:nowrap;
+    overflow: hidden;
+    margin-left: -15%;
+    margin-top: 0;
+    padding: 0;
+}
+    .top li {
+    float:right;
+    margin-right:2%;
+    position: relative;
+    overflow: hidden;
+}
+    .top li a{
+    display: block;
+    color:white;
+    text-align: center;
+    padding: 3px;
+    overflow: hidden;
+    text-decoration: none;
+}
+    .top li a:hover{
+    background-color: #111;
+}
+</style>
+    <link rel="stylesheet" href="\static\plugins\bootstrap-3.4.1\css\bootstrap.css">
+</head>
+<body>
+<div class="top">
+                    <ul>
+                    <li><a href="/box/put/">发布盲盒</a></li>
+                        <li><a href="/login_out/">登出</a></li>
+                        <li><a href="/">回到主页</a></li>
+                    </ul>
+            </div>
+<br>
+<h1>脱单盲盒</h1>
+<hr>
+<table cellspacing=10>
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>发布者</th>
+        <th align="left">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in obj %}
+    <tr>
+        <th>{{i.id}}</th>
+        <td>{{i.sender_id}}</td>
+        <td><a href="/box/content/{{i.id}}/" ><input type="button" value="详情"></a>
+            <a href="/{{i.sender_id}}/info" ><input type="button" value="查看发布者信息"></a>
+            <a href="/box/{{i.id}}/ad_delete/" ><input type="button" value="删除"></a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      </a>
+    </li>
+    {{str}}
+    <li>
+      </a>
+    </li>
+  </ul>
+</nav>
+</body>
+</html>

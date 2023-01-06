@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择收藏夹</title>
+    <style>body{text-align:center}</style>
+</head>
+<body>
+<h1>选择收藏夹</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    {% for i in fol %}
+   <input type="radio" name="fold" value="{{i.fold_id}}">{{i.fold_name}}
+    {% endfor %}
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

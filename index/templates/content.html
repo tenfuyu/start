@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.sender_id}}的盲盒</title>
+    <style type="text/css">.info{text-align:center}</style>
+</head>
+<body>
+<div class="info">
+<h1>{{user.sender_id}}的盲盒</h1>
+    <a href="/ad_fold/{{u.fake_name}}/{{user.id}}/">加入收藏夹</a>
+<hr>
+<br>
+    <img src="/static/media/{{user.photo}}" width="200px" height="200px" /><br>
+    高校：{{user.school}}<br>
+    姓名：{{user.real_name}}<br>
+    性别：{{user.get_gender_display}}<br>
+    年龄：{{user.age}}<br>
+    地区：{{user.area}}<br>
+    电话：{{user.phone}}<br>
+    个人简介：{{user.info}}<br>
+    发布时间:{{user.time}}<br><br>
+</div>
+<h3>评论区</h3>
+<hr>
+<div class="comment-area">
+    {% if not com %}
+    <span style="color:grey">这里还没有评论哦~</span>
+    {% endif %}
+    <table cellspacing=10>
+    <tbody>
+    {% for i in com %}
+    <tr>
+        <th>{{i.sender_id}}</th>
+        <td><span style="color:grey">{{i.content}}</span></td>
+    </tr>
+    <tr>
+        <th>发布时间： </th>
+        <td><span style="color:grey">{{i.time}}</span></td>
+        {% if not form2 %}
+        <td><a href="/box/content/{{user.id}}/{{i.id}}/comment2/">评论</a></td>
+        {% endif %}
+        {% if u.fake_name == i.sender_id %}
+        <td><a href="delete/{{i.id}}/" type="text">删除</a></td>
+        {% endif %}
+    </tr>
+        {% for j in inf_com %}
+            {% if  j.to_comment == i %}
+                <tr><th>    </th><td>{{j.sender.fake_name}}</td><td>{{j.content}}</td></tr>
+                <tr><th>    </th><td>发布时间：</td><td>{{j.time}}</td>{% if j.sender == u %}<td><a href="delete2/{{j.id}}/" type="text">删除</a></td>{% endif %}</tr>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+<br>
+        {% if form2 %}
+        <form action="" method="post">
+    {% csrf_token %}
+    请输入你的回复：{{form2.content}}
+    <input type="submit" value="提交">
+</form>
+        {% endif %}
+{% if not form %}
+<a href="/box/content/{{user.id}}/comment/" type="text">评论</a>
+{% endif %}
+{% if form %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.content.label}}{{form.content}}
+    <input type="submit" value="提交">
+    {% endif %}
+</form>
+{% if n %}
+<a href="/box/content/{{n.id}}/next" type="text">下一个</a>
+{% endif %}
+{% if f %}
+<a href="/box/content/{{f.id}}/next" type="text">上一个</a>
+{% endif %}
+<br>
+<a href="/" type="text">回到主页</a>
+</body>
+</html>

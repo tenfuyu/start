@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{n}}的主页</title>
+    <style>
+    h1{text-align:center};
+    </style>
+    <link rel="stylesheet" href="\static\plugins\bootstrap-3.4.1\css\bootstrap.css">
+</head>
+<body>
+<br>
+<h1>{{user.fake_name}}的主页</h1><a href="/change_name/">修改名称</a>
+<img src="/static/media/{{user.photo}}" width="200px" height="200px" />
+{% if u2.id == user.id %}
+<a href="/change_head/">修改头像</a>
+{% endif %}
+<hr>
+{% if u2.id == user.id %}
+<h3>收藏夹：</h3><br>
+{% for i in ft %}
+<a href="/fold/{{i.fold_id}}/">序号：{{i.fold_id}} 名称：{{i.fold_name}}</a><br>
+{% endfor %}
+<a href="/fold_create/">创建收藏夹</a>
+{% endif %}
+<h3>TA所发布的盲盒：</h3><br>
+<table>
+    <tbody>
+    {% for i in bl %}
+    <tr>
+        <th>编号：{{i.id}}</th>
+        <td><a href="http://127.0.0.1:8000/box/content/{{i.id}}/" >详情</a>
+            {% if user.id == u2.id %}
+            <a href="http://127.0.0.1:8000/box/{{i.id}}/delete/" >删除</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+{% if u2.id == user.id and user.fake_name != 'admin'%}
+<h3>抽取历史：</h3><br>
+<table>
+    <tbody>
+    {% for i in h %}
+    <tr>
+        <th>编号：{{i.box_id}}</th>
+        <td><a href="/box/content/{{i.box_id}}/" >详情</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      </a>
+    </li>
+    {{str}}
+    <li>
+      </a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+{% if user.fake_name == 'admin' %}
+<a href="/admin/" >管理员界面</a>
+{% endif %}
+<a href="/" >返回主页</a>
+</body>
+</html>

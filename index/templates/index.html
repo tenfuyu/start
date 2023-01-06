@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>脱单盲盒</title>
+    <style type="text/css">
+    .top{
+    height:auto;
+    width:100%;
+    margin-left:0;
+    background:rgb(130, 130, 130);
+    position: fixed;
+    top: 0;
+    margin-bottom: 5px;
+}
+.top ul{
+    width: auto;
+    list-style-type: none;
+    white-space:nowrap;
+    overflow: hidden;
+    margin-left: -15%;
+    margin-top: 0;
+    padding: 0;
+}
+    .top li {
+    float:right;
+    margin-right:2%;
+    position: relative;
+    overflow: hidden;
+}
+    .top li a{
+    display: block;
+    color:white;
+    text-align: center;
+    padding: 3px;
+    overflow: hidden;
+    text-decoration: none;
+}
+    .top li a:hover{
+    background-color: #111;
+}
+</style>
+    <style type="text/css">
+        body{text-align:center}
+    </style>
+    <link rel="stylesheet" href="\static\plugins\bootstrap-3.4.1\css\bootstrap.css">
+</head>
+<body>
+{% if h == 0 %}
+<div class="top">
+                    <ul>
+                    <li><a href="register/">注册</a></li>
+                    <li><a href="login/">登录</a></li>
+                    </ul>
+            </div>
+{% else %}
+<div class="top">
+                    <ul>
+                    <li><a href="{{user}}/info/">欢迎你，{{user}}</a></li>
+                        {% if user == 'admin' %}
+                        <li><a href="admin/">管理员界面</a></li>
+                        {% endif %}
+                        <li><a href="box/put/">发布盲盒</a></li>
+                            <li><a href="http://127.0.0.1:8000/login_out/">登出</a></li>
+                    </ul>
+            </div>
+{% endif %}
+<br>
+<h1>脱单盲盒</h1>
+<hr>
+{% if h == 0 %}
+<a href="login/">
+    <img src="static/media/img/box.jpg" width="400px" height="400px" />
+</a>
+{% else %}
+<a href="box/content/{{m}}/">
+    <img src="static/media/img/box.jpg" width="400px" height="400px" />
+</a>
+{% endif %}
+<h3>点击图片开启盲盒</h3>
+<br>
+<a href="box/content/{{nan}}/next/">男生盲盒</a>
+<a href="box/content/{{nv}}/next/">女生盲盒</a>
+<a href="box/search/school/">高校搜索</a>
+</body>
+</html>
